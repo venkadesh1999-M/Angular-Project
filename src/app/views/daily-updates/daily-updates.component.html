@@ -1,0 +1,179 @@
+<h2>Employee Target List</h2>
+<div class="container">
+  <!-- <div class="row align-items-center mt-4">
+  <div class="col-md-4"><span>Employee Target List</span></div>
+  <div class="col-md-4 ms-auto text-end">
+      <button type="button" id="back" class="btn btn-outline-success btn-lg" (click)="TaskList()">Back</button>
+  </div>
+</div> -->
+
+  <!-- <c-card-body> -->
+  <!-- <div class="container my-4"> -->
+  <!-- Estimation and Toggle -->
+  <!-- <div class="d-flex justify-content-between align-items-center flex-wrap" id="list">
+        <div class="me-3 mb-2">
+          <h5>Total Estimation: {{ totalEstimation.hours || 0 }} Hours : {{ totalEstimation.minutes || 0 }} Min</h5>
+        </div>
+        <div class="mb-2">
+          <button (click)="toggleOpen()" class="btn btn-sm btn-outline-primary" style="border-radius: 20px;">
+            {{ isOpen ? '−' : '+' }}
+          </button>
+        </div>
+      </div> -->
+
+  <!-- ✅ Mobile View: Card layout -->
+  <div *ngIf="showtable" class="d-block d-md-none mt-3">
+    <div class="card mb-3" *ngFor="let task of Tasks; let i = index"
+      [ngClass]="{ 'border-danger': task.hours === 0 && task.minutes === 0 }">
+      <div class="card-body">
+        <p><strong>Date:</strong> {{ task.date | date: 'yyyy-MM-dd' }}</p>
+        <p><strong>Employee:</strong> {{ task.employee }}</p>
+        <p><strong>Responsibility:</strong> {{ task.Report }}</p>
+        <p><strong>Task:</strong> {{ task.task }}</p>
+        <p><strong>Time:</strong> {{ task.hours }}h : {{ task.minutes }}m</p>
+        <div class="d-flex justify-content-end gap-2">
+          <button class="btn btn-sm btn-outline-secondary" (click)="editTask(i)">
+            <i class="fas fa-edit"></i>
+          </button>
+          <button class="btn btn-sm btn-outline-danger" (click)="confirmRemoveTask(i)">
+            <i class="fas fa-trash-alt"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ✅ Desktop View: Table layout -->
+  <div *ngIf="showtable" class="table-responsive d-none d-md-block mt-3">
+    <table class="table table-sm">
+      <thead>
+        <tr>
+          <th>S.No</th>
+          <th>Date</th>
+          <th>Employee</th>
+          <th>Responsibilty</th>
+          <th class="d-none d-md-table-cell">Task</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let task of Tasks; let i = index"
+          [ngClass]="{'table-danger': task.hours === 0 && task.minutes === 0}">
+          <td>{{i+1}}</td>
+          <td>{{ task.date | date: 'yyyy-MM-dd' }}</td>
+          <td>{{ task.employee }}</td>
+          <td>{{ task.Report }}</td>
+          <td class="d-none d-md-table-cell">{{ task.task }}</td>
+          <td>
+            <div class="d-flex gap-2">
+              <button class="btn btn-sm btn-outline-secondary" (click)="editTask(i)">
+                <i class="fas fa-edit"></i>
+              </button>
+              <button class="btn btn-sm btn-outline-danger" (click)="confirmRemoveTask(i)">
+                <i class="fas fa-trash-alt"></i>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Add Task Form -->
+  <div class="mt-3 p-3 rounded w-100 w-sm-75 mx-auto mt-4">
+    <form #form="ngForm" (ngSubmit)="addTask()" novalidate>
+      <div class="form-floating mb-3 mt-3">
+        <input id="taskDate" type="date" class="form-control" [(ngModel)]="newTask.date" name="date" required
+          id="taskDate" #date="ngModel" />
+        <label for="taskDate" style="margin-bottom: 25px;">Date</label>
+        <div *ngIf="date.invalid && date.touched" class="text-danger">Date is required.</div>
+      </div>
+
+      <div class="form-floating mb-4">
+        <select id="floatingName" class="form-select" class="form-control" [(ngModel)]="newTask.employee"
+          name="employee" required #employee="ngModel">
+          <!-- <option value="" disabled>Select an employee</option> -->
+          <option *ngFor="let emp of employeeList" [value]="emp">{{ emp }}</option>
+        </select>
+        <label for="floatingName">Employee</label>
+        <div *ngIf="employee.invalid && employee.touched" class="text-danger">Employee selection is required.</div>
+      </div>
+
+      <div class="form-floating mb-4">
+        <select id="" class="form-select" class="form-control" [(ngModel)]="newTask.Report" name="Report" required
+          #report="ngModel">
+          <!-- <option value="" disabled>Select a report</option> -->
+          <option *ngFor="let report of reportList" [value]="report">{{ report }}</option>
+        </select>
+        <label for="floatingReport">Responsibility</label>
+        <div *ngIf="report.invalid && report.touched" class="text-danger">Report selection is required.</div>
+      </div>
+
+      <div class="form-floating mb-4">
+        <div class="form-floating">
+          <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
+            [(ngModel)]="newTask.task" name="task" required #task="ngModel" style="height: 100px"
+            style="height: 100px"></textarea>
+          <label for="floatingTextarea2" style="margin-bottom: 20px;">Task</label>
+          <div *ngIf="task.invalid && task.touched" class="text-danger">Task description is required.</div>
+        </div>
+      </div>
+
+      <div class="mb-4">
+        <label for="taskHoursRange" style="margin-left: 10px;" class="form-label">Hours: {{ newTask.hours || 0
+          }}</label>
+        <input id="taskHoursRange" type="range" min="0" max="24" step="1" class="form-range" [(ngModel)]="newTask.hours"
+          name="hours" #hours="ngModel" />
+      </div>
+      <div class="mb-4">
+        <label for="taskMinutesRange" style="margin-left: 10px;" class="form-label">Minutes: {{ newTask.minutes || 0
+          }}</label>
+        <input id="taskMinutesRange" type="range" min="0" max="59" step="1" class="form-range"
+          [(ngModel)]="newTask.minutes" name="minutes" #minutes="ngModel" />
+      </div>
+
+      <!-- Custom validation message for hours and minutes -->
+      <div *ngIf="(newTask.hours === 0 && newTask.minutes === 0) && form.submitted" class="text-danger mb-3">
+        Total time cannot be zero.
+      </div>
+
+      <div class="mt-4 d-flex justify-content-center align-items-center gap-3">
+        <button type="submit" id="btn-apply" class="btn btn-outline-primary btn-lg text mb-2"
+          [disabled]="form.invalid || (newTask.hours === 0 && newTask.minutes === 0)">
+          {{ editIndex !== null ? 'Update' : 'Add Task' }}
+        </button>
+        <button type="button" id="btn-back" class="btn btn-outline-secondary ms-2 btn-lg mb-2"
+          (click)="backBtn()">Back</button>
+      </div>
+    </form>
+  </div>
+
+  <div *ngIf="visible" class="center-toast">
+    <c-toaster>
+      <c-toast #toast [autohide]="false" [visible]="visible">
+        <c-toast-body>
+          {{ message }}
+          <div class="mt-3 pt-3 border-top text-end">
+            <button [cToastClose]="toast" cButton color="danger" style="color: aliceblue;" size="sm"
+              (click)="visible = false">Close</button>
+          </div>
+        </c-toast-body>
+      </c-toast>
+    </c-toaster>
+  </div>
+
+  <div *ngIf="showConfirmToast" class="center-toast mt-4 p -5" style="padding: 10px;">
+  <c-toaster *ngIf="showConfirmToast">
+    <c-toast #confirmToast [autohide]="false" [visible]="showConfirmToast">
+      <c-toast-body class="modal-message">
+        <h5>Confirm Delete</h5>
+        <span>Are you sure you want to delete this task?</span>
+        <div class="mt-3 pt-2 border-top text-end d-flex justify-content-end gap-4" id="modal-buttons">
+          <button cButton class="btn-leave" size="sm" (click)="removeTaskConfirmed()">Yes</button>
+          <button cButton class="btn-stay" size="sm" (click)="cancelRemoveTask()">No</button>
+        </div>
+      </c-toast-body>
+    </c-toast>
+  </c-toaster>
+</div>
+</div>

@@ -1,0 +1,116 @@
+<div class="container" style="padding-bottom: 80px;">
+  <h3>Update Employee Information</h3>
+
+  <dx-form id="form" [formData]="employee" [colCountByScreen]="{ xs: 1, sm: 1, md: 2 }">
+    <dxi-item itemType="group">
+      <dxi-item class="profile-container">
+        <!-- Image Preview -->
+        <img [src]="employee.user_profile || 'assets/images/default.png'" alt="Profile Image" class="profile-image"
+          (error)="onImageError($event)"
+          style="max-width: 200px; height: auto; margin-top: 10px; border-radius: 12px; border: 1px solid #ccc;" />
+
+        <!-- Hidden file input -->
+        <input type="file" #fileInput accept="image/*" (change)="onImageSelected($event)" style="display: none;" />
+
+        <!-- Custom Change Photo button -->
+        <button type="button" class="btn btn-sm btn-primary" class="icon-image" (click)="fileInput.click()">
+          <!-- {{ employee.user_profile ? 'Change Photo' : 'Upload Photo' }} -->
+          <svg [cIcon]="icons.cilImagePlus" size="xl" title="List Icon"></svg>
+        </button>
+
+      </dxi-item>
+
+      <dxi-item dataField="username" caption="Name" [label]="{ text: 'Name', visible: true }"></dxi-item>
+      <dxi-item dataField="join_date" caption="Join Date"></dxi-item>
+      <dxi-item dataField="designation" caption="Designation" editorType="dxSelectBox"
+        [editorOptions]="{ items: employeeList, searchEnabled: true, placeholder: 'Select Employee List' }"
+        [label]="{ text: 'Designation', visible: true }"></dxi-item>
+    </dxi-item>
+
+    <dxi-item itemType="group" caption="Personal Information">
+      <dxi-item itemType="tabbed">
+        <dxi-tab title="Contacts">
+          <dxi-item dataField="skype_email" caption="Skype"></dxi-item>
+          <dxi-item dataField="mobile"></dxi-item>
+          <dxi-item dataField="email"></dxi-item>
+        </dxi-tab>
+
+        <dxi-tab title="Other Info">
+          <dxi-item dataField="gender" caption="Gender" editorType="dxSelectBox"
+            [editorOptions]="{ items: genderList, searchEnabled: false, placeholder: 'Select Gender' }">
+          </dxi-item>          
+          <dxi-item dataField="dob" caption="Date of Birth"></dxi-item>
+          <dxi-item dataField="blood_group" editorType="dxSelectBox"
+            [editorOptions]="{ items: bloodGroupList, searchEnabled: true, placeholder: 'Select Blood Group' }">
+          </dxi-item>
+        </dxi-tab>
+
+        <dxi-tab title="Address">
+          <dxi-item dataField="address"></dxi-item>
+          <dxi-item dataField="city"></dxi-item>
+          <dxi-item dataField="pincode"></dxi-item>
+        </dxi-tab>
+      </dxi-item>
+    </dxi-item>
+  </dx-form>
+
+  <!-- Update and Back buttons -->
+  <div class="d-flex justify-content-center align-items-center gap-3">
+
+    <dx-button text="Update" id="btn-apply" (click)="updateBtn()" 
+      stylingMode="text"></dx-button>
+
+
+    <dx-button text="Back"id="btn-back" (click)="backBtn()" 
+      stylingMode="text"></dx-button>
+
+  </div>
+
+  <!-- Toast -->
+  <div *ngIf="visible" class="center-toast">
+    <c-toaster>
+      <c-toast #toast [autohide]="false" [visible]="visible">
+        <c-toast-body>
+          {{ message}}
+          <div class="mt-3 pt-2 border-top text-end">
+            <button [cToastClose]="toast" cButton color="secondary" size="sm" (click)="visible = false">
+              Close
+            </button>
+          </div>
+        </c-toast-body>
+      </c-toast>
+    </c-toaster>
+  </div>
+
+
+
+  <!-- <div *ngIf="confirmBack" class="center-toast">
+  <c-toaster>
+    <c-toast #confirmToast [autohide]="false" [visible]="confirmBack">
+      <c-toast-body>
+        Are you sure you want to go back without saving?
+
+        <div class="mt-3 pt-2 border-top text-end">
+          <button class="btn btn-sm btn-danger me-2" (click)="confirmBackNavigation(true)">Yes</button>
+          <button class="btn btn-sm btn-secondary" (click)="confirmBackNavigation(false)">No</button>
+        </div>
+      </c-toast-body>
+    </c-toast>
+  </c-toaster>
+</div> -->
+
+<div *ngIf="showConfirmToast" class="center-toast mt-4 p-5">
+    <c-toaster>
+      <c-toast #confirmToast [autohide]="false" [visible]="showConfirmToast">
+        <c-toast-body class="modal-message">
+          <h5>Oops!</h5>
+          <span>You have unsaved changes. If you cancel now, your changes will be lost.<br>Do you want to continue?</span>
+          <div class="mt-3 pt-2 border-top text-end d-flex justify-content-end gap-4" id="modal-buttons">
+            <button cButton class="btn-leave" size="sm" (click)="proceedBack()">Leave Without Saving</button>
+            <button cButton class="btn-stay" size="sm" (click)="cancelBack()">Stay on Page</button>
+          </div>
+        </c-toast-body>
+      </c-toast>
+    </c-toaster>
+  </div>
+</div>

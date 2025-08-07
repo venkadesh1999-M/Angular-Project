@@ -1,0 +1,44 @@
+h1{
+    text-align: center;
+    margin-bottom: 20px;
+}
+.center-toast {
+  position: fixed;
+  inset: 0; /* shorthand for top: 0; right: 0; bottom: 0; left: 0; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  pointer-events: none;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.5); 
+}
+
+.center-toast c-toaster,
+.center-toast c-toast {
+  pointer-events: auto;
+  position: static !important; 
+  margin: auto !important; 
+   max-width: 90vw;
+  max-height: 90vh;
+  box-sizing: border-box;
+}
+
+// Button styles
+
+#btn-apply {
+  background-color: #10B981;      /* Emerald Green */
+  color: white;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#btn-apply:hover {
+  background-color: #059669;      /* Darker Emerald */
+}
+

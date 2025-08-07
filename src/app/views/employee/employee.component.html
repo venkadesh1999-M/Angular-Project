@@ -1,0 +1,44 @@
+<div class="container">
+  <div class="row align-items-center">
+    <div class="col-md-4"><span>Team Members</span></div>
+    <div class="col-md-4 ms-auto text-end">
+      <button class="btn btn-outline-success btn-lg" (click)="addBtn()">Add Employee</button>
+    </div>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">S.No</th>
+          <th scope="col">Name</th>
+          <th scope="col">Emp.Code</th>
+          <th scope="col" class="d-none d-md-table-cell">Email</th>
+          <th scope="col" class="d-none d-md-table-cell">DOB</th>
+          <th scope="col" class="d-none d-md-table-cell">DOJ</th>
+          <th scope="col" class="d-none d-md-table-cell">Mobile</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let employee of employee; let i = index">
+          <td class="top">{{ i + 1 }}</td>
+          <td class="top">{{ employee.username }}</td>
+          <td class="top">{{ employee.code }}</td>
+          <td class="top d-none d-md-table-cell">{{ employee.email }}</td>
+          <td class="top d-none d-md-table-cell">{{ employee.dob | date: 'dd/MM/yyyy' }}</td>
+          <td class="top d-none d-md-table-cell">{{ employee.join_date | date: 'dd/MM/yyyy' }}</td>
+          <td class="top d-none d-md-table-cell">{{ employee.mobile }}</td>
+          <td class="d-flex gap-2">
+            <button class="btn" id="check" (click)="Performance(i)">
+              <svg [cIcon]="icons.cilCheckCircle" size="xl" title="List Icon"></svg>
+            </button>
+            <button class="btn" id="edit" (click)="editBtn(i)">
+              <svg [cIcon]="icons.cilPencil" size="xl" title="List Icon"></svg>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

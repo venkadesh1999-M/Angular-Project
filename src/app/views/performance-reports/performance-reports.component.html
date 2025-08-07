@@ -1,0 +1,81 @@
+<div class="container my-4">
+  <h2 class="text-center mb-5">Employee Performance</h2>
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-10 col-lg-8">
+      <c-chart [data]="data" type="bar"></c-chart>
+    </div>
+  </div>
+
+  <h4 class="mt-5 mb-3">{{name | titlecase}} Estimation's Time</h4>
+  <div class="row">
+    <div class="col-12 col-md-4 mb-3">
+      <div class="card" style="width: 100%;">
+        <div class="card-body">
+          <h5 class="card-title">{{assignedTarget.daily}}</h5>
+          <p class="card-text">Daily</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-4 mb-3">
+      <div class="card" style="width: 100%;">
+        <div class="card-body">
+          <h5 class="card-title">{{assignedTarget.weekly}}</h5>
+          <p class="card-text">Weekly</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-4 mb-3">
+      <div class="card" style="width: 100%;">
+        <div class="card-body">
+          <h5 class="card-title">{{assignedTarget.monthly}}</h5>
+          <p class="card-text">Monthly</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-4">
+    <div class="card mb-3" style="width: 100%;">
+      <div class="card-body">
+        <h5>Daily</h5>
+        <div class="progress">
+          <div class="progress-bar" role="progressbar" aria-label="Daily progress" style="width: 25%;"
+            [style.width.%]="(assignedTarget.daily / dailyTarget) * 100"
+            [attr.aria-valuenow]="(assignedTarget.daily / dailyTarget) * 100" aria-valuenow="25" aria-valuemin="0"
+            aria-valuemax="100">
+            {{ ((assignedTarget.daily / dailyTarget) * 100) | number:'1.0-0'}}%
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card mb-3" style="width: 100%;">
+      <div class="card-body">
+        <h5>Weekly</h5>
+        <div class="progress">
+          <div class="progress-bar" role="progressbar" aria-label="Weekly progress" style="width: 40%;"
+            [style.width.%]="(assignedTarget.weekly / weeklyTarget) * 100"
+            [attr.aria-valuenow]="(assignedTarget.weekly / weeklyTarget) * 100" aria-valuenow="40" aria-valuemin="0"
+            aria-valuemax="100">
+            {{ ((assignedTarget.weekly / weeklyTarget) * 100) | number:'1.0-0' }}%
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card mb-3" style="width: 100%;">
+      <div class="card-body">
+        <h5>Monthly</h5>
+        <div class="progress">
+          <div class="progress-bar" role="progressbar" aria-label="Monthly progress" style="width: 60%;"
+            [style.width.%]="(assignedTarget.monthly / monthlyTarget) * 100"
+            [attr.aria-valuenow]="(assignedTarget.monthly / monthlyTarget) * 100" aria-valuenow="60" aria-valuemin="0"
+            aria-valuemax="100">
+            {{ ((assignedTarget.monthly / monthlyTarget) * 100) | number:'1.0-0' }}%
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button class="btn btn-outline-primary btn-lg mt-4" (click)="goBack()">Back</button>
+</div>

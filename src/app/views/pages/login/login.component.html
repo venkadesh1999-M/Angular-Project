@@ -1,0 +1,68 @@
+<div class="bg-light dark:bg-transparent w-100 min-vh-100 d-flex flex-row align-items-center">
+  <c-container breakpoint="md">
+    <c-row class="justify-content-center">
+      <c-col lg="10" xl="5">
+        <c-card-group>
+          <c-card class="p-4">
+            <c-card-body>
+              <form cForm #ngform="ngForm" (ngSubmit)="LoginBtn()" novalidate>
+                <h1>Login</h1>
+                <p class="text-body-secondary mb-4">Sign In to your account</p>
+                <c-input-group class="mb-3">
+                  <span cInputGroupText>
+                    <svg cIcon name="cilUser"></svg>
+                  </span>
+                  <input autoComplete="username" [(ngModel)]="email" name="email" required [(ngModel)]="email"
+                    #ngemail="ngModel" [class.is-invalid]="ngemail.invalid && ngform.submitted" cFormControl
+                    placeholder="Username" />
+                  <div class="invalid-feedback">
+                    Email is required.
+                  </div>
+                </c-input-group>
+                <c-input-group class="mb-4">
+                  <span cInputGroupText cInputGroupText style="cursor: pointer;" (click)="togglePasswordVisibility()">
+                    <!-- <svg cIcon name="cilLockLocked"></svg> -->
+                    <svg *ngIf="showPassword" cIcon name="cilLockLocked"></svg>
+                    <span *ngIf="!showPassword">👁️</span>
+                  </span>
+                  <input autoComplete="current-password" name="password" type="{{ passwordFieldType }}" required [(ngModel)]="password"
+                    #ngpassword="ngModel" [class.is-invalid]="ngpassword.invalid && ngform.submitted" cFormControl
+                    placeholder="Password" />
+                  <!-- <span > -->
+                    <!-- <svg cIcon [name]="showPassword ? 'cilBan' : 'cilEyeSlash'"></svg> -->
+                     <!-- {{ showPassword ? '' : '👁️' }} -->
+                  <!-- </span> -->
+                  <div class="invalid-feedback">
+                    password is required.
+                  </div>
+                </c-input-group>
+                <c-row>
+                  <c-col xs="4">
+                    <button type="submit" id="btn-apply" color="primary" cButton>Login</button>
+                  </c-col>
+                </c-row>
+              </form>
+            </c-card-body>
+          </c-card>
+        </c-card-group>
+      </c-col>
+    </c-row>
+  </c-container>
+
+
+  <div *ngIf="visible" class="center-toast">
+    <c-toaster>
+      <c-toast #toast [autohide]="false" [visible]="visible">
+        <c-toast-body>
+          {{ message }}
+          <div class="mt-3 pt-2 border-top text-end">
+            <button [cToastClose]="toast" cButton color="danger" size="sm" (click)="visible = false">
+              Close
+            </button>
+          </div>
+        </c-toast-body>
+      </c-toast>
+    </c-toaster>
+  </div>
+
+</div>

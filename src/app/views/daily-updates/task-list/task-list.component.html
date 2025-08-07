@@ -1,0 +1,94 @@
+<!-- Employee Dropdown -->
+<div class="row align-items-center mt-4">
+  <div class="col-md-4"><span>Timesheets</span></div>
+  <div class="col-md-4 ms-auto text-end">
+  </div>
+</div>
+
+<div class="card mt-4 p-4">
+  <div class="row mt-4">
+    <div class="col-12 col-md-3">
+      <label for="employeeSelect" class="mt-3">
+        <h5>All Task Lists</h5>
+      </label>
+    </div>
+    <div class="col-12 col-md-4 mt-2">
+      <select [(ngModel)]="selectedEmployeeId" (change)="onEmployeeChange()" name="employeeSelect" class="form-select"
+        required>
+        <option value="">All</option>
+        <option *ngFor="let emp of employee" [value]="emp.id">
+          {{ emp.username }}
+        </option>
+      </select>
+    </div>
+    <div class="col-12 mt-2 col-md-4 ms-auto text-end">
+      <button class="btn btn-outline-success" (click)="addtimesheet()">Add Timesheet</button>
+    </div>
+  </div>
+
+  <div class="text-center my-4" *ngIf="isLoading">
+  <div class="spinner-border text-primary" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</div>
+
+
+  <div class="table-responsive">
+      <table class="table mt-4" *ngIf="visible">
+        <thead>
+          <tr>
+            <th>S.No</th>
+            <th>Employee</th>
+            <th scope="col" class="d-none d-md-table-cell">Date</th>
+            <th scope="col" class="d-none d-md-table-cell">Task</th>
+            <th scope="col" class="d-none d-md-table-cell">Hours</th>
+            <th scope="col" class="d-none d-md-table-cell">Minutes</th>
+            <th scope="col" class="d-none d-md-table-cell">Estimation (min)</th>
+            <th>Report To</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let task of allTaskData; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ task.employeeName }}</td>
+            <td class="top d-none d-md-table-cell">{{ task.date }}</td>
+            <td class="top d-none d-md-table-cell">{{ task.title }}</td>
+            <td class="top d-none d-md-table-cell">{{ task.hours }}</td>
+            <td class="top d-none d-md-table-cell">{{ task.minutes }}</td>
+            <td class="top d-none d-md-table-cell">{{ task.estimation }}</td>
+            <td>{{ task.owner }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+
+    <div class="table-responsive">
+      <table class="table mt-4" *ngIf="selectDatavisible">
+        <thead>
+          <tr>
+            <th>S.No</th>
+            <th>Employee</th>
+            <th>Date</th>
+            <th>Task</th>
+            <th>Hours</th>
+            <th>Minutes</th>
+            <th>Estimation (min)</th>
+            <th>Report To</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let task of selectedTaskData; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ task.employeeName }}</td>
+            <td>{{ task.date }}</td>
+            <td>{{ task.title }}</td>
+            <td>{{ task.hours }}</td>
+            <td>{{ task.minutes }}</td>
+            <td>{{ task.estimation }}</td>
+            <td>{{ task.owner }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

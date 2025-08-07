@@ -1,0 +1,22 @@
+
+<div class="container">
+  <table class="table mt-4">
+  <thead>
+    <tr>
+      <th colspan="2"  class="table">Merlux Holidays 2025</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor = "let holiday of holidays; let i = index" class="table-hover">
+      <td>{{holiday.date}}</td>
+      <td>{{holiday.name}}</td>
+    </tr>
+    <tr>
+     
+  </tbody>
+</table>
+
+<button type="button" class="btn btn-outline-primary btn-lg" (click) = "backBtn()" style="margin-top: 20px;">
+ Back
+</button>
+</div>

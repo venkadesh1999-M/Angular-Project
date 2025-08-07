@@ -1,0 +1,102 @@
+// .card {
+//   // background: linear-gradient(to bottom, rgba(0, 255, 0, 0.3), rgba(0, 100, 0, 0.6));
+//   border: none;
+//   margin-top: 30px;
+//   border-radius: 20px;
+//   color: #fff;
+// }
+//   .card-body {
+//     padding: 1.5rem;
+//   }
+
+//   table {
+//     background-color: rgba(255, 255, 255, 0.95); 
+//     border-radius: 10px;
+//     overflow: hidden; 
+//   }
+//     th,
+//     td {
+//       background-color: transparent; 
+//       color: #000; 
+//     }
+
+//     thead {
+//       background-color: #e6f2e6;
+//     }
+
+//     tbody tr:hover {
+//       background-color: #d9ead3;
+//     }
+  
+
+
+
+// label{
+//     color: #000;
+// }
+
+// span {
+//     text-align: start;
+//     font-size: 26px;
+//     font-weight: bold;
+//     font-family: 'poppins', sans-serif;
+// }
+
+.container{
+  max-width: 100%;
+}
+
+table {
+    background-color: #f4f4f4;
+    width: 100%;
+
+}
+
+
+
+table th {
+    background-color: #f5b947;
+    color: #1d1d1d;
+    font-weight: bold;
+    text-align: start;
+    padding: 15px;
+    font-size: 18px;
+    font-style: normal;
+    text-align: start;
+}
+
+span {
+  text-align: start;
+  font-size: 26px;
+  font-weight: bold;
+  font-family: 'poppins', sans-serif;
+
+}
+
+
+table tr:nth-child(even) {
+  background-color: #f4f4f4;
+  color: #1d1d1d;
+  font-size: 14px;
+  border-bottom: 1px solid #e0e0e0;
+
+
+}
+
+table tr:nth-child(odd) {
+  background-color: #ffffff;
+  color: #1d1d1d;
+  font-size: 14px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+
+table tbody td {
+  color: #000;
+  text-align: start;
+  padding: 13px;
+  font-size: 15px;
+  background-color: transparent;
+}
+
+

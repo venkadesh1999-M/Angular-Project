@@ -1,0 +1,84 @@
+.row{
+  margin-bottom: 30px;
+}
+
+span {
+  text-align: start;
+  font-size: 24px;
+  font-weight: bold;
+  font-family: 'poppins', sans-serif;
+
+}
+
+table {
+  margin-bottom: 20px;
+  background-color: #f4f4f4;
+}
+
+#check {
+  background-color: #2ba84a;
+  color: white;
+}
+
+#check:hover {
+  background-color: #1a5f38;
+}
+
+#edit {
+  background-color: #f5b947;
+}
+
+#edit:hover {
+  background-color: #f6ce4f;
+  color: #000;
+}
+
+table thead th {
+  background-color: #f5b947;
+  color: #1d1d1d;
+  font-weight: bold;
+  text-align: start;
+  padding: 15px;
+  font-size: 18px;
+  font-style: normal;
+}
+
+table tr:nth-child(even) {
+  background-color: #f4f4f4;
+  color: #1d1d1d;
+  font-size: 14px;
+  border-bottom: 1px solid #e0e0e0;
+
+
+}
+
+table tr:nth-child(odd) {
+  background-color: #ffffff;
+  color: #1d1d1d;
+  font-size: 14px;
+  border-bottom: 1px solid #e0e0e0;
+
+
+}
+
+table tbody td {
+  color: #000;
+  text-align: start;
+  padding: 10px;
+  font-size: 14px;
+  background: transparent;
+}
+
+.top {
+  vertical-align: middle;
+}
+
+.container {
+  padding: 25px;
+  border-radius: 5%;
+}
+
+.btn {
+  font-size: 13px;
+  font-weight: semi-bold;
+}

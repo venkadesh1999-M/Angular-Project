@@ -1,0 +1,174 @@
+<h2>Onboard Team Member</h2>
+<div class="container">
+  <form #customStylesForm="ngForm" (ngSubmit)="submitForm()" [gutter]="3" [validated]="customStylesValidated" novalidate cForm cRow class="needs-validation">
+
+    <!-- Username -->
+    <c-col [md]="6">
+      <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="username" [(ngModel)]="employee.username" name="username" placeholder="Username" required />
+        <label for="username">Username</label>
+        <c-form-feedback [valid]="true">Looks good!</c-form-feedback>
+      </div>
+    </c-col>
+
+    <!-- Email -->
+    <c-col [md]="6">
+      <div class="form-floating mb-3">
+        <input type="email" class="form-control" id="email" [(ngModel)]="employee.email" name="email" placeholder="Email" required />
+        <label for="email">Email</label>
+        <c-form-feedback [valid]="true">Looks good!</c-form-feedback>
+      </div>
+    </c-col>
+
+    <!-- Gender -->
+    <c-col [md]="6">
+      <div class="form-floating mb-3">
+        <select class="form-select" id="gender" [(ngModel)]="employee.gender" name="gender" required>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+        </select>
+        <label for="gender">Gender</label>
+        <c-form-feedback [valid]="true">Looks good!</c-form-feedback>
+      </div>
+    </c-col>
+
+    <!-- Mobile -->
+    <c-col [md]="6">
+      <div class="form-floating mb-3">
+        <input type="tel" class="form-control" id="mobile" [(ngModel)]="employee.mobile" name="mobile" placeholder="Mobile" required />
+        <label for="mobile">Mobile</label>
+        <c-form-feedback [valid]="true">Looks good!</c-form-feedback>
+      </div>
+    </c-col>
+
+    <!-- DOB -->
+    <c-col [md]="6">
+      <div class="form-floating mb-3">
+        <input type="date" class="form-control" id="dob" [(ngModel)]="employee.dob" name="dob" required #dobCtrl="ngModel" [class.is-invalid]="dobCtrl.dirty && !isAgeValid(employee.dob)" [class.is-valid]="dobCtrl.dirty && isAgeValid(employee.dob)" />
+        <label for="dob">Date of Birth</label>
+        <c-form-feedback *ngIf="dobCtrl.dirty && isAgeValid(employee.dob)" [valid]="true">Looks good!</c-form-feedback>
+        <c-form-feedback *ngIf="dobCtrl.dirty && !isAgeValid(employee.dob)" [valid]="false">Employee must be at least 18 years old and DOB must be before today.</c-form-feedback>
+      </div>
+
+    </c-col>
+
+    <!-- Join Date -->
+    <c-col [md]="6">
+      <div class="form-floating mb-3">
+        <input type="date" class="form-control" id="join_date" [(ngModel)]="employee.join_date" name="join_date" required />
+        <label for="join_date">Join Date</label>
+        <c-form-feedback [valid]="true">Looks good!</c-form-feedback>
+      </div>
+    </c-col>
+
+    <!-- Designation -->
+    <c-col [md]="6">
+      <div class="form-floating mb-3">
+        <select class="form-select" id="designation" [(ngModel)]="employee.designation" name="designation" required>
+          <option value="IT Support Specialist">IT Support Specialist</option>
+          <option value="Junior Software Developer">Junior Software Developer</option>
+          <option value="Senior Software Engineer">Senior Software Engineer</option>
+          <option value="Lead Developer">Lead Developer</option>
+          <option value="Solutions Architect">Solutions Architect</option>
+          <option value="Project Manager">Project Manager (Tech)</option>
+        </select>
+        <label for="designation">Designation</label>
+        <c-form-feedback [valid]="true">Looks good!</c-form-feedback>
+      </div>
+    </c-col>
+
+    <!-- City -->
+    <c-col [md]="6">
+      <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="city" [(ngModel)]="employee.city" name="city" placeholder="City" required />
+        <label for="city">City</label>
+        <c-form-feedback [valid]="true">Looks good!</c-form-feedback>
+      </div>
+    </c-col>
+
+    <!-- Blood Group -->
+    <c-col [md]="6">
+      <div class="form-floating mb-3">
+        <select class="form-select" id="blood_group" [(ngModel)]="employee.blood_group" name="blood_group">
+          <option *ngFor="let group of ['A+','A-','B+','B-','O+','O-','AB+','AB-']" [value]="group">{{ group }}</option>
+        </select>
+        <label for="blood_group">Blood Group</label>
+      </div>
+    </c-col>
+
+    <!-- Address -->
+    <c-col [md]="6">
+      <div class="form-floating">
+        <textarea class="form-control" id="address" style="height: 80px;" [(ngModel)]="employee.address" name="address" placeholder="Address" required></textarea>
+        <label for="address">Address</label>
+        <c-form-feedback [valid]="true">Looks good!</c-form-feedback>
+      </div>
+    </c-col>
+
+    <!-- Pincode -->
+    <c-col [md]="6">
+      <div class="form-floating mb-3">
+        <input type="number" class="form-control" id="pincode" [(ngModel)]="employee.pincode" name="pincode" placeholder="Pincode" required />
+        <label for="pincode">Pincode</label>
+        <c-form-feedback [valid]="true">Looks good!</c-form-feedback>
+      </div>
+    </c-col>
+
+    <!-- Skype Email -->
+    <c-col [md]="6">
+      <div class="form-floating mb-3">
+        <input type="email" class="form-control" id="skype_email" [(ngModel)]="employee.skype_email" name="skype_email" placeholder="Skype Email" />
+        <label for="skype_email">Skype Email</label>
+      </div>
+    </c-col>
+
+    <!-- Upload Profile Image (Optional) -->
+    <c-col [md]="6">
+      <label cLabel for="user_profile" style="margin-left: 10px;">Upload Profile Image (Optional)</label>
+      <div class="upload-area" (click)="fileInput.click()"
+           style="border: 2px dashed #ccc; padding: 20px; text-align: center; cursor: pointer; border-radius: 10px;">
+        <p>{{ selectedFile ? selectedFile.name : 'Click or drag and drop to upload profile image' }}</p>
+        <input type="file" #fileInput hidden accept="image/*" (change)="onFileSelected($event)" />
+      </div>
+      <div *ngIf="imagePreview" style="margin-top: 10px;">
+        <img [src]="imagePreview" alt="Profile Image Preview" style="max-width: 100%; height: auto; border-radius: 8px; border: 1px solid #ccc;" />
+      </div>
+    </c-col>
+
+    <!-- Buttons -->
+    <c-col [md]="12" class="d-flex justify-content-center align-items-center gap-3 mt-4">
+      <button class="btn btn-lg" type="submit" id="btn-apply">Add employee</button>
+      <button class="btn btn-lg" type="button" id="btn-back" (click)="backBtn()">Back</button>
+    </c-col>
+  </form>
+
+  <!-- Toast Message -->
+  <div *ngIf="visible" class="center-toast mt-4">
+    <c-toaster>
+      <c-toast #toast [autohide]="false" [visible]="visible">
+        <c-toast-body>
+          {{ message }}
+          <div class="mt-3 pt-2 border-top text-end">
+            <button [cToastClose]="toast" cButton color="secondary" size="sm" (click)="visible = false">Close</button>
+          </div>
+        </c-toast-body>
+      </c-toast>
+    </c-toaster>
+  </div>
+
+  <!-- Confirm Toast -->
+  <div *ngIf="showConfirmToast" class="center-toast mt-4 p-5">
+    <c-toaster>
+      <c-toast #confirmToast [autohide]="false" [visible]="showConfirmToast">
+        <c-toast-body class="modal-message">
+          <h5>Oops!</h5>
+          <span>You have unsaved changes. If you cancel now, your changes will be lost.<br>Do you want to continue?</span>
+          <div class="mt-3 pt-2 border-top text-end d-flex justify-content-end gap-4" id="modal-buttons">
+            <button cButton class="btn-leave" size="sm" (click)="proceedBack()">Leave Without Saving</button>
+            <button cButton class="btn-stay" size="sm" (click)="cancelBack()">Stay on Page</button>
+          </div>
+        </c-toast-body>
+      </c-toast>
+    </c-toaster>
+  </div>
+</div>

@@ -1,0 +1,147 @@
+#form {
+  height: auto;
+}
+h3 {
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+dx-button {
+  color: #000;
+  font-size: 17px;
+}
+
+caption {
+  margin-bottom: 20px;
+}
+
+.center-toast {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  pointer-events: none;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.9);
+}
+
+.center-toast c-toaster,
+.center-toast c-toast {
+  pointer-events: auto;
+  position: static !important;
+  margin: auto !important;
+  max-width: 90vw;
+  max-height: 90vh;
+  box-sizing: border-box;
+}
+
+button {
+  background-color: rgb(142, 112, 105);
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  color: #fdfdfd;
+}
+
+/* ✅ Profile Image Style */
+.profile-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px auto;
+  padding: 10px;
+    position: relative;
+}
+
+.profile-image {
+  width: 200px;
+  height: 350px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid #ccc;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+.icon-image{
+  position: absolute;
+  bottom: 0;
+}
+
+.icon-image:hover{
+  background-color: #077ec8;
+}
+
+
+
+// Button Styles
+
+
+#btn-apply {
+  background-color: #10B981;      /* Emerald Green */
+  color: white;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#btn-apply:hover {
+  background-color: #059669;      /* Darker Emerald */
+}
+#btn-back {
+  background-color: white;
+  color: #1F2937;                 /* Dark Gray */
+  border: 1.5px solid #D1D5DB;    /* Light Gray border */
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#btn-back:hover {
+  background-color: #F3F4F6;      /* Light Gray Hover */
+}
+
+h5{
+  font-weight: bold;
+  text-align: start;
+  margin-bottom: 18px;
+  color: black;
+}
+
+span{
+    font-weight: 400;
+}
+.btn-leave {
+  background-color: #ef4444; /* red-500 */
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-leave:hover {
+  background-color: #dc2626; /* red-600 */
+}
+
+.btn-stay {
+  background-color: #e5e7eb; /* gray-200 */
+  color: #374151; /* gray-700 */
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-stay:hover {
+  background-color: #d1d5db; /* gray-300 */
+}

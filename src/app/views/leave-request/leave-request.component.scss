@@ -1,0 +1,134 @@
+.row {
+    margin-bottom: 30px;
+    margin-top: 15px;
+}
+
+span {
+    text-align: start;
+    font-size: 26px;
+    font-weight: bold;
+    font-family: 'poppins', sans-serif;
+}
+
+table {
+    background-color: #f4f4f4;
+    width: 100%;
+
+}
+
+
+
+table th {
+    background-color: #f5b947;
+    color: #1d1d1d;
+    font-weight: bold;
+    text-align: start;
+    padding: 15px;
+    font-size: 18px;
+    font-style: normal;
+    text-align: start;
+}
+.review {
+    background-color: #FFFFFF;
+}
+
+table tr:nth-child(even) {
+    background-color: #f4f4f4;
+    color: #1d1d1d;
+    border-bottom: 2px solid #e0e0e0;
+}
+
+table tr:nth-child(odd) {
+    background-color: #ffffff;
+    color: #1d1d1d;
+    border-bottom: 2px solid #e0e0e0;
+}
+
+td {
+    color: #000;
+    text-align: start;
+    padding: 10px;
+    font-size: 14px;
+    background: transparent;
+}
+
+
+
+#exampleModalLabel {
+    text-align: center;
+}
+
+// #leaveTable{
+//     background: #ffc107;
+// }
+
+#review {
+    background-color: #1a5f38;
+    font-size: 14px;
+    border-radius: 8px;
+    color: white;
+}
+
+#review:hover {
+    background-color: #145a2c;
+}
+
+// table thead {
+//     background-color: #ffc107;
+// }
+.modal-header {
+    // background-color: #2ba84a;
+    background-color: #388E3C;
+
+    /*#2ba84a*/
+}
+
+#approve {
+    background-color: #388E3C;
+    color: white;
+}
+
+#approve:hover {
+    background-color: #299c2e;
+    color: white;
+}
+
+#reject {
+    background-color: transparent;
+    border: 2px solid #D32F2F;
+    color: #D32F2F;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+#reject:hover {
+    background-color: #B71C1C;
+    color: white;
+}
+
+.btn-close {
+    color: #ffffff;
+    // background: none !important;
+}
+
+// #btn-close:hover {
+//     background-color: #f8f7f7 !important;
+// }
+
+
+
+.review td {
+    color: #212121;
+}
+
+#reviewTable {
+    background-color: #2ba84a;
+    color: white;
+    text-align: center;
+}
+
+#reviewTable:hover {
+    background-color: #1a5f38;
+}

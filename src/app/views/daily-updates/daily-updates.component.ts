@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { FormModule } from '@coreui/angular';
+import { FormModule, LocalStorageService } from '@coreui/angular';
 import { Employee, ServiceService } from '../employee/service.service';
 import { Router } from '@angular/router';
 import { Firestore, collection, addDoc, doc, setDoc, deleteDoc } from '@angular/fire/firestore';
@@ -49,8 +49,13 @@ export class DailyUpdatesComponent {
   ) {
     this.employeeService.getemployee().subscribe((data) => {
       this.employee = data;
-      this.employeeId = this.employee[3]?.id || '';
+      // this.employeeId = this.employee[3]?.id || '';
+
     });
+
+   this.employeeId = localStorage.getItem('uid') || "";
+    console.log(this.employeeId)
+
   }
 
   totalEstimation = { hours: 0, minutes: 0 };
